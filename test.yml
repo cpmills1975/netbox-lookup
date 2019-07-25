@@ -1,0 +1,27 @@
+----
+
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+
+  - debug:
+      var: query('netbox', 'tenants', api_endpoint='http://localhost/', token='8aba70dbb462b36d1bc972980be9e992059e821e')
+
+  - debug:
+      var: lookup('netbox', 'tenants', api_endpoint='http://localhost/', token='8aba70dbb462b36d1bc972980be9e992059e821e')
+
+  - debug:
+      var: lookup('netbox', 'tenants', api_endpoint='http://localhost/', token='8aba70dbb462b36d1bc972980be9e992059e821e', wantlist=True)
+
+  - debug:
+      var: item
+    loop: "{{ query('netbox', 'tenants', api_endpoint='http://localhost/', token='8aba70dbb462b36d1bc972980be9e992059e821e') }}"
+
+  - debug:
+      var: item
+    loop: "{{ lookup('netbox', 'tenants', api_endpoint='http://localhost/', token='8aba70dbb462b36d1bc972980be9e992059e821e') }}"
+
+  - debug:
+      var: item
+    loop: "{{ query('netbox', 'tenants', api_endpoint='http://localhost/', token='8aba70dbb462b36d1bc972980be9e992059e821e') }}"
